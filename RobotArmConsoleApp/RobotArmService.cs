@@ -150,7 +150,7 @@ namespace RobotArmConsoleApp
 
         public static string InitiateRobotArm()
         {
-            Log.Info("PLace robot arm on the plate");
+            Log.Info("Place robot arm on the plate");
             Console.WriteLine("Enter Command PLACE X,Y to place robot above the plate");
             string command = Console.ReadLine();
             bool validCommand = ValidatePlaceCommand(command);
