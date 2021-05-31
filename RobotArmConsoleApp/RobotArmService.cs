@@ -8,7 +8,7 @@ namespace RobotArmConsoleApp
 {
     public class RobotArmService
     {
-        public static int[,] ExecuteCommand(string command, int[,] array2D, ref int xCoordinate, ref int yCoordinate)
+        public static int[,] ExecuteCommand(string command, int[,] squarePlateArray2D, ref int xCoordinate, ref int yCoordinate)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace RobotArmConsoleApp
 
                             xCoordinate = xyCoordinates[0];
                             yCoordinate = xyCoordinates[1];
-                            array2D[xCoordinate, yCoordinate] = 0;
+                            squarePlateArray2D[xCoordinate, yCoordinate] = 0;
                         }
                     }
                     else
@@ -44,7 +44,7 @@ namespace RobotArmConsoleApp
                 }
                 else if (command.ToLower().Contains(Constants.Detect))
                 {
-                    Console.WriteLine(IsWellFull(array2D, xCoordinate, yCoordinate));
+                    Console.WriteLine(IsWellFull(squarePlateArray2D, xCoordinate, yCoordinate));
                 }
                 else if (command.ToLower().Contains(Constants.Move))
                 {
@@ -110,15 +110,15 @@ namespace RobotArmConsoleApp
                 }
                 else if (command.ToLower().Contains(Constants.Report))
                 {
-                    string wellCondition = IsWellFull(array2D, xCoordinate, yCoordinate);
+                    string wellCondition = IsWellFull(squarePlateArray2D, xCoordinate, yCoordinate);
                     Console.WriteLine("Output: {0} {1} {2}", xCoordinate, yCoordinate, wellCondition);
                 }
                 else if (command.ToLower().Contains(Constants.Drop))
                 {
-                    string wellCondition = IsWellFull(array2D, xCoordinate, yCoordinate);
+                    string wellCondition = IsWellFull(squarePlateArray2D, xCoordinate, yCoordinate);
                     if (wellCondition == Constants.Empty)
                     {
-                        array2D[xCoordinate, yCoordinate] = 1;
+                        squarePlateArray2D[xCoordinate, yCoordinate] = 1;
                     }
                 }
                 else
@@ -131,12 +131,12 @@ namespace RobotArmConsoleApp
                 Log.Error("Error occured while executing command");
                 Console.WriteLine("Error occured {0}", e.Message);
             }
-            return array2D;
+            return squarePlateArray2D;
         }
 
-        public static string IsWellFull(int[,] array2D, int xCoordinate, int yCoordinate)
+        public static string IsWellFull(int[,] squarePlateArray2D, int xCoordinate, int yCoordinate)
         {
-            return array2D[xCoordinate, yCoordinate] == 0 ? Constants.Empty : Constants.Full;
+            return squarePlateArray2D[xCoordinate, yCoordinate] == 0 ? Constants.Empty : Constants.Full;
         }
         public static bool ValidatePlaceCommand(string command)
         {

@@ -11,7 +11,7 @@ namespace RobotArmConsoleApp
         {
             int xCoordinate = 0;
             int yCoordinate = 0;
-            int[,] array2D = Constants.squarePlateArray;
+            int[,] squarePlateArray2D = Constants.squarePlateArray;
 
             Console.WriteLine("This app can accept following commands: \n" +
                 "1) PLACE X,Y \n" +
@@ -21,12 +21,12 @@ namespace RobotArmConsoleApp
                 "5) REPORT \n" +
                 "6) EXIT \n");
             string command = RobotArmService.InitiateRobotArm();
-           array2D = RobotArmService.ExecuteCommand(command, array2D, ref xCoordinate, ref yCoordinate);
+           squarePlateArray2D = RobotArmService.ExecuteCommand(command, squarePlateArray2D, ref xCoordinate, ref yCoordinate);
             string nextCommand = Console.ReadLine();
 
             while (!nextCommand.ToLower().Contains("exit"))
             {
-                array2D = RobotArmService.ExecuteCommand(nextCommand,array2D, ref xCoordinate, ref yCoordinate);
+                squarePlateArray2D = RobotArmService.ExecuteCommand(nextCommand,squarePlateArray2D, ref xCoordinate, ref yCoordinate);
                 nextCommand = Console.ReadLine();
             }
             return;
